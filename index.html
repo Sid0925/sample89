@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<title>ETL</title>
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/bootstrap-theme.css" rel="stylesheet"/>
+<link href="css/swiper.min.css" rel="stylesheet"/>
+<style>
+/*!
+ * Author: Akash Bhadange
+ */
+
+ 
+
+ body {
+  background: linear-gradient(315deg, #c31e14 0%, #4F54AC 100%)
+  font-family: 'Open Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+ 
+  font-size: 16px;
+  color: #222;
+  font-weight: normal;
+  letter-spacing: 0.03em;
+}
+a {
+  color: #ffffff;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+section {
+  width: 100%;
+}
+a:hover, a:focus, a:active {
+  text-decoration: none;
+  outline: none;
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  list-style: none;
+}
+img {
+  max-width: 100%;
+}
+.purple {
+  color: #7447ae;
+}
+.pink {
+  color: #ff2a75;
+}
+.blue {
+  color: #1253c3;
+}
+.yellow{
+  color: #f87428;
+}
+.b{
+  color: #0291ff;
+}
+ 
+.text-left {
+  color: white;
+}
+
+ 
+
+.testimonial-box {
+  position: relative;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio (adjust as needed) */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
+ 
+
+h3, h4, h1, p {
+  font-family: 'Montserrat', sans-serif;
+}
+p {
+  font-size: small;
+}
+
+
+
+
+
+
+header.hero {
+  position: relative;
+  background: linear-gradient(45deg, #8686ba 0%, #f4ebec 100%)
+  padding-bottom: 0px;
+  overflow: hidden; /* Hide the overflow of the pseudo-element */
+}
+
+header.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+   
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  /* Apply blur filter to the pseudo-element only */
+  -webkit-filter: blur(5px);
+  filter: blur(3px);
+
+  /* Ensure the pseudo-element is behind the content */
+  z-index: -1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+header.hero .hero-text {
+  
+  margin-top: 20%;
+  margin-left: 0%;
+  margin-bottom: 20%;
+
+}
+header.hero .row {
+  position: relative;
+}
+a.menu {
+  position: absolute;
+  right: 0;
+  top: 3em;
+}
+a.menu img {
+  max-width: 40px;
+}
+a.menu:hover {
+  transform: translateX(-5px);
+  -webkit-transform: translateX(-5px);
+}
+header.hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 4.5em;
+  font-weight: 600;
+  line-height: 1.4em;
+}
+header.hero h1 span,
+header.hero h3 {
+  font-weight: 300;
+}
+header.hero .btn {
+  margin: 3em 0;
+}
+
+ul.social-links li {
+  display: inline-block;
+}
+ul.social-links li a {
+  padding: 5px;
+  opacity: 0.6;
+}
+ul.social-links li.label {
+  font-size: 20px;
+  opacity: 0.6;
+  font-weight: 400;
+}
+ul.social-links li a:hover {
+  opacity: 1;
+}
+ul.social-links li a img {
+  max-height: 30px;
+}
+
+
+
+
+ 
+
+
+/* Case study */
+.case-study .col-md-12 {
+  transform: translateY(-80px);
+  -webkit-transform: translateY(-80px);
+  padding: 5em 3em;
+  background-color: #fff;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.15);
+}
+h4.sub-heading {
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #4e4c58;
+}
+h1.heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #4e4c58;
+  font-size: 3em;
+  position: relative;
+  padding-bottom: 10px;
+}
+h1.heading span {
+  font-weight: 600;
+}
+h1.heading:after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  height: 3px;
+  width: 100px;
+}
+h1.heading.purple:after {
+  background-color: #7447ae;
+}
+h1.heading.pink:after {
+  background-color: #ff2a75;
+}
+
+
+.swiper-container {
+  width: 100%;
+  height: 100%;
+  padding: 4em 1em;
+}
+.swiper-slide {
+  font-size: 18px;
+  background: #fff;
+}
+
+.client-box {
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+  padding: 3.5em 2em;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  text-align: center;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.client-box .client-logo {
+  max-height: 120px;
+}
+.client-box h3.title {
+  color: #4e4c58;
+  margin-bottom: 2em;
+}
+.client-box p.tag {
+  color: #7447ae;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1em;
+}
+.client-box a {
+  color: #333;
+  font-style: italic;
+  opacity: 0.5;
+}
+.client-box.swiper-slide-next {
+  -ms-transform: scale(1.15); /* IE 9 */
+  -webkit-transform: scale(1.15); /* Safari */
+  transform: scale(1.15);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+.swiper-button-next, .swiper-button-prev {
+  width: 80px;
+  height: 80px;
+  background-size: 80px 80px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+  border-radius: 5em;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+}
+.swiper-button-next, .swiper-container-rtl .swiper-button-prev {
+  background-image: url(../assets/arrow-right.png);
+  right: -40px;
+}
+.swiper-button-prev, .swiper-container-rtl .swiper-button-next {
+  background-image: url(../assets/arrow-left.png);
+  left: -40px;
+}
+
+
+/* Testimonial */
+.testimonial-box {
+  padding: 2em;
+  color: #fff;
+  border-radius: 5px;
+  font-weight: 300;
+  min-height: 400px;
+}
+.testimonial-box h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+.testimonial-box p.name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 1.2em;
+  margin-bottom: 0;
+}
+.testimonial-box p.designation {
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 0;
+}
+.testimonial-box.yellow {
+  background-color: #ffbe61;
+}
+.testimonial-box.purple {
+  background-color: #7b32d5;
+}
+.testimonial-box.blue {
+  background-color: #37a7ff;
+}
+.testimonial-box.pink {
+  background-color: #ff662a;
+}
+
+
+/* Statistics */
+.stats {
+  margin: 4em 0;
+}
+.stat-box {
+  padding: 4em;
+  margin-top: 4em;
+  margin-bottom: 4em;
+}
+.stat-box h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 5.6em;
+}
+.stat-box h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #4e4c58;
+  font-size: 2em;
+}
+
+
+/* Contact Banner */
+.contact-banner {
+  background: url(../assets/bg-pat.png) #664fee repeat;
+  color: #fff;
+  padding: 6em;
+}
+.contact-banner h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 3em;
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+
+/* Footer */
+.footer {
+  background-color: #37324b;
+  padding: 5em;
+}
+.footer p{
+  color: #ffffff;
+}
+.footer h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 3em;
+  color: #a3a1ac;
+  margin-bottom: 2em;
+}
+.footer h1 span {
+  color: #fff;
+  font-weight: 300;
+}
+.footer h1:after {
+  content: '';
+  width: 80px;
+  height: 4px;
+  background-color: #37a7ff;
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translate(-40px, 10px);
+}
+.footer ul.social-links li a {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.footer ul.social-links li a img {
+  max-height: 40px;
+}
+
+/* Sub-footer */
+.sub-footer {
+  background-color: #322e45;
+  padding: 2em;
+  color: #a3a1ac;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+}
+.sub-footer p {
+  margin: 0;
+  font-size: 1.2em;
+}
+.sub-footer p a {
+  color: #fff;
+}
+.sub-footer p a:hover {
+  opacity: 0.8;
+}
+
+
+/* Main navigation */
+nav {
+  height: 40px;
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 3em;
+  cursor: pointer;
+  transition: .25s ease-in-out;
+}
+#menu-toggle {
+  width: 40px;
+  clear: both;
+  float: right;
+}
+#menu-toggle span.line {
+  display: block;
+  height: 4px;
+  width: 40px;
+  background-color: #fff;
+  transition: .25s ease-in-out;
+}
+#menu-toggle .hamburger span.line {
+  margin-bottom: 0.45em;
+  clear: both;
+  float: right;
+}
+#menu-toggle .hamburger span.line:nth-child(1) {
+  width: 30px;
+  transition-delay: .25s;
+}
+#menu-toggle .hamburger span.line:nth-child(2) {
+  transition-delay: .325s;
+}
+#menu-toggle .hamburger span.line:nth-child(3) {
+  width: 20px;
+  transition-delay: .475s;
+}
+
+#menu-toggle .cross span.line {
+  width: 0px;
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+#menu-toggle .cross span.line:nth-child(1) {
+  transform: rotate(45deg);
+  transition-delay: .0s;
+}
+#menu-toggle .cross span.line:nth-child(2) {
+  transform: rotate(-45deg);
+  transition-delay: .25s;
+}
+
+#menu-toggle.open .hamburger span.line {
+  width: 0px;
+}
+#menu-toggle.open #hamburger span:nth-child(1) {
+  transition-delay: 0s;
+}
+#menu-toggle.open #hamburger span:nth-child(2) {
+  transition-delay: .125s;
+}
+#menu-toggle.open #hamburger span:nth-child(3) {
+  transition-delay: .25s;
+}
+
+#menu-toggle.open .cross span.line:nth-child(1) {
+  width: 40px;
+  transition-delay: 1s;
+}
+#menu-toggle.open .cross span.line:nth-child(2) {
+  width: 40px;
+  transition-delay: 1.25s;
+}
+
+ul.main-nav {
+  padding-right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  opacity: 0;
+  visibility: hidden;
+  transition: .25s all;
+}
+ul.main-nav li {
+  display: inline-block;
+}
+ul.main-nav li a {
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding: 5px 15px;
+}
+ul.main-nav li a:hover {
+  color: #ffbe61;
+}
+ul.main-nav.show-it {
+  opacity: 1;
+  visibility: visible;
+  transition-delay: .25s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Let's optimise it for mobile devices */
+
+@media (max-width: 720px){
+  .btn-lg {
+    padding: .8em 3em;
+    font-size: .8em;
+  }
+  h1.heading {
+    font-size: 2em;
+  }
+  header.hero {
+    text-align: center;
+    padding-bottom: 0;
+  }
+  header.hero h1 {
+    font-size: 2em;
+    margin-top: 1.5em;
+  }
+  header.hero h3 {
+    font-size: 1.2em;
+    line-height: 1.6em;
+  }
+  ul.social-links li.label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 1em;
+  }
+  ul.social-links li a {
+    opacity: 1;
+  }
+  .testimonial {
+    padding-top: 3rem;
+  }
+  .case-study .col-md-12 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .case-study .col-md-12 {
+    transform: translateY(0px);
+    -webkit-transform: translateY(0px);
+  }
+
+  /*Swiper classes*/
+  .client-box.swiper-slide-next {
+    -ms-transform: scale(1);
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    box-shadow: none;
+  }
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+  }
+  .swiper-container {
+    padding: 4em 0em;
+  }
+  .client-box {
+    padding: 1em;
+    text-align: center;
+  }
+  .stat-box {
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  .stat-box h1 {
+    font-size: 3.6em;
+  }
+  .stat-box h3 {
+    font-size: 1.4em;
+  }
+  .contact-banner {
+    padding: 2em;
+  }
+  .contact-banner h1 {
+    font-size: 2em;
+  }
+  .footer {
+    padding: 1em 0em;
+  }
+}
+
+
+
+
+
+
+
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-size: inherit;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Desktop view adjustments */
+@media (min-width: 992px) {
+    body {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}
+
+/* Fix for "Pipeline 2 Overview" and "Compliance with UK GDPR" sections */
+div[id^='pipeline'], div[id^='gdpr'] {
+    display: block;
+}
+div[id^='pipeline'] img, div[id^='gdpr'] img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+div[id^='pipeline'] p, div[id^='gdpr'] p {
+    display: block;
+    width: 100%;
+}
+</style>
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Open+Sans:300,400,700" rel="stylesheet"/>
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+<style>
+ 
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: #5a5a5f;
+        }
+
+
+      
+          table {
+              width: 100%;
+              border-collapse: collapse;
+              margin: 20px 0;
+              font-family: Arial, sans-serif;
+          }
+          th, td {
+              border: 1px solid #ddd;
+              padding: 8px 12px;
+              text-align: left;
+          }
+          th {
+              background-color: #f2f2f2;
+              font-weight: bold;
+          }
+          tr:nth-child(even) {
+              background-color: #f5f5f5;
+          }
+          tr:hover {
+              background-color: #ddd;
+          }
+          caption {
+              font-size: 24px;
+              font-weight: bold;
+              margin-bottom: 15px;
+          }
+
+
+
+
+
+           /* Container for the images */
+        .image-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          padding: 20px;
+      }
+
+      /* Styling each individual image box */
+      .img-box {
+          margin: 20px;
+          border: 1px solid #ddd;
+          padding: 10px;
+          background-color: #fff;
+          box-shadow: 2px 2px 12px #aaa;
+      }
+
+      img {
+          max-width: 100%;
+          height: auto;
+      }
+
+      h3 {
+          text-align: center;
+
+
+
+      }
+      .box-container {
+        display: flex;
+        justify-content: space-between; /* This will space the boxes evenly */
+        padding: 20px;
+        flex-wrap: nowrap; /* This ensures the boxes won't wrap to the next line */
+    }
+
+    /* Styling each individual box */
+    .box {
+        flex: 1; /* Each box will take an equal portion of the width */
+        border: 1px solid #ddd;
+        background-color: #fff;
+        box-shadow: 2px 2px 12px #aaa;
+        text-align: center;
+        padding: 20px;
+        margin: 0 10px; /* Add some space between the boxes */
+    }
+
+    strong {
+      color: #000000;
+  }
+  em {
+      color: #3498DB;
+  }
+  .condition-box {
+      border: 2px solid #E74C3C;
+      padding: 15px;
+      margin-bottom: 20px;
+  }
+  .true-branch, .false-branch {
+      background-color: #ECF0F1;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+  }
+
+
+ 
+ 
+
+      </style>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"/>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700|Open+Sans:300,400,700" rel="stylesheet"/></head>
+<body>
+<header class="hero" data-aos="fade-right" data-aos-easing="ease-in-sine" data-aos-offset="300">
+<div class="container" data-aos="zoom-out-up">
+<div class="row" data-aos="zoom-out-up">
+<div class="col-md-6 col-md-offset-6 col-xs-12">
+<nav>
+<div class="container" id="menu-toggle">
+<div class="hamburger">
+<span class="line"></span>
+<span class="line"></span>
+<span class="line"></span>
+</div>
+<div class="cross">
+<span class="line"></span>
+<span class="line"></span>
+</div>
+</div>
+<ul class="main-nav">
+<li><a href="#">Home</a></li>
+<li><a href="#work">Workflow</a></li>
+<li><a href="#dash">Dashboard</a></li>
+<li><a href="#D">Dax</a></li>
+<li><a href="#about">About</a></li>
+</ul>
+</nav>
+<!-- <a href="#" class="menu"><img src="assets/menu.png"></a> -->
+<div class="hero-text">
+<h2> Data Governance Driven ETL</h2>
+<p>The project seamlessly integrates stringent data governance within the ETL framework on the Azure cloud platform. Starting with on-premise data extraction, data undergoes a secure staging in ADLS with top-tier encryption. It's then classified in Blob storage, with each piece of data tagged according to its sensitivity. Databricks oversees transformations, emphasizing encryption for select fields and thorough data validation. As data finds its home in the SQL Server DB, advanced access controls and consistent backup measures are in place. Throughout this journey, from extraction to loading, every step is governed by comprehensive policies, ensuring data quality, protection, and compliance. This holistic approach not only refines the ETL process but also strengthens the foundation of trust in the data management system.</p>
+<a style="color: black;">By Siddharth Chikalkar</a>
+<h5></h5>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<section class="case-study">
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<h4 class="sub-heading" data-aos="fade-up" id="targetSection">Policies, Rules and resposibility, Classification.</h4>
+<h1 class="heading purple"><span class="purple">Data Governance </span> Driven ETL  </h1>
+<!-- Swiper -->
+<div class="container" style="font-family: Arial, sans-serif; margin-bottom: 20px;"><br/>
+<h5>Discription of goverence architecture: for ETL Operations</h5>
+<p>
+                                  Within the ever-evolving dynamics of today's digital business landscape, establishing a robust and precise data governance framework is paramount. Presented below is a comprehensive blueprint of our data governance strategy tailored for Extract, Transform, Load (ETL) operations in the context of the Adventure database. This structured guide encompasses the policies, rules, and classifications meticulously crafted to ensure that data handling is in consonance with best practices and compliance standards. 
+                              </p>
+<p>
+                                Our policies set the general standards and guidelines, ensuring data's quality, privacy, security, and appropriate retention. The rules delineate the operational specifics, from access control to data encryption and change management. Lastly, the classifications offer a detailed breakdown of data types, emphasizing their significance and the recommended protective measures for each. Together, these components manifest our commitment to upholding data integrity, privacy, and security throughout all stages of the ETL process.
+                            </p>
+</div>
+<table>
+<caption>Policies</caption>
+<tr>
+<th>Policy Name</th>
+<th>Description</th>
+</tr>
+<td><h5>Metadata Collection Policy</h5></td>
+<td>
+<p>The Metadata Collection Policy underlines the standard procedures and guidelines for consistently capturing, documenting, and registering metadata associated with data assets in the Adventure database. Every data ingestion or creation activity should be complemented by the simultaneous generation of relevant metadata.</p>
+</td>
+<tr>
+<td><h5>Data Privacy Policy</h5></td>
+<td>
+<p>Establish guidelines for protecting personally identifiable information (PII) of customers and employees stored in the Adventure database.</p>
+<p>Specify rules for data access, encryption, and consent requirements.</p>
+</td>
+</tr>
+<tr>
+<td><h5> Data Security Policy</h5></td>
+<td>
+<p>Define measures to protect the database against unauthorized access, data breaches, and malicious activities.</p>
+<p>Outline security controls, authentication mechanisms, and incident response procedures.</p>
+</td>
+</tr>
+<tr>
+<td><h5>Data Quality Policy</h5></td>
+<td>
+<p>Set standards for data accuracy, completeness, and consistency.</p>
+<p>Define processes for data validation, cleansing, and monitoring to ensure high-quality data in the Adventure database.</p>
+</td>
+</tr>
+<tr>
+<td><h5>Data Retention Policy</h5></td>
+<td>
+<p>Determine the appropriate retention periods for different types of data in the Adventure database.</p>
+<p>Address legal, regulatory, and business requirements for data retention and deletion.</p>
+</td>
+</tr>
+</table>
+<table data-aos="fade-right" data-aos-easing="ease-in-sine" data-aos-offset="100">
+<caption>Rules</caption>
+<tr>
+<th>Rule Name</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><h5> Access Control Rule</h5></td>
+<td>
+<p>Specify who has access to the Adventure database and what level of access they have based on their roles and responsibilities.</p>
+<p>Implement authentication, authorization, and audit mechanisms to enforce this rule.</p>
+</td>
+</tr>
+<tr>
+<td><h5> Data Encryption Rule</h5></td>
+<td>
+<p>Define the encryption requirements for sensitive data stored in the Adventure database, such as PII or financial information.</p>
+<p>Ensure that encryption is applied during data transmission and storage.</p>
+</td>
+</tr>
+<tr>
+<td><h5> Data Backup and Recovery Rule</h5></td>
+<td>
+<p>Establish guidelines for regular backups of the Adventure database.</p>
+<p>Establish procedures for data recovery in case of system failures, disasters, or data corruption.</p>
+</td>
+</tr>
+<tr>
+<td><h5>Data Change Management Rule</h5></td>
+<td>
+<p>Outline the process for making changes to the Adventure database schema, data structure, or configurations.</p>
+<p>Implement version control and change tracking mechanisms to ensure proper documentation and minimize errors.</p>
+</td>
+</tr>
+</table>
+<table data-aos="zoom-out-left">
+<caption>Classification</caption>
+<tr>
+<th>Data Type</th>
+<th>Description</th>
+</tr>
+<tr>
+<td><h5>Customer Data</h5></td>
+<td>
+<p>Classify customer data stored in the Adventure database as sensitive and confidential.</p>
+<p>Apply strict access controls, encryption, and data masking techniques to protect customer information.</p>
+</td>
+</tr>
+<tr>
+<td><h5>Sales and Financial Data</h5></td>
+<td>
+<p>Classify data related to sales transactions, financial records, and payment details as critical and confidential.</p>
+<p>Implement access controls, auditing, and encryption to safeguard this data.</p>
+</td>
+</tr>
+<tr>
+<td><h5> Inventory Data</h5></td>
+<td>
+<p>Classify inventory data as important for operational purposes but with lower sensitivity.</p>
+<p>Ensure appropriate access controls and data accuracy to support inventory management processes.</p>
+</td>
+</tr>
+<tr>
+<td><h5>Employee Data</h5></td>
+<td>
+<p>Classify employee data, such as personal details, salaries, and performance reviews, as confidential.</p>
+<p>Implement access controls, role-based permissions, and proper data handling practices.</p>
+</td>
+</tr>
+</table>
+<h4 class="sub-heading">Understanding Data Lineage: From Source to Destination</h4>
+<h1 class="heading pink"><span class="blue">Data linage</span> <br/><p>Following the Data Trail: A Dive into Data Lineage Concepts</p></h1>
+<div class="image-container">
+<div class="img-box">
+<img alt="Data linage Overview" data-aos="zoom-in-down" src="assets\rr.png"/>
+</div>
+<div class="container">
+<h2>Data Lineage Overview</h2>
+<p>
+                              The core architecture of this project's data lineage commences with data sources housed on-premises. This foundational data undergoes a series of orchestrated transformations and movements, ensuring optimal utility and compliance throughout its lifecycle.
+                          </p>
+<h5>On-Premises Data Source</h5>
+<p>
+                              Our starting point is the on-premises data source. Rich with diverse datasets, this source serves as the initial reservoir, feeding data into subsequent stages of the lineage.
+                          </p>
+<h5>Azure Data Lake Storage (ADLS)</h5>
+<p>
+                              Acting as a critical intermediary, the ADLS stages the data ingested from the on-premises source. This pivotal stage aids in storing vast amounts of structured and unstructured data, offering high-speed and secure data analytics.
+                          </p>
+<h5>Azure Data Factory (ADF)</h5>
+<p>
+                              Superimposed above, ADF takes charge of the orchestration. With its suite of tools like parameterization, Lookup activities, stored procedures, metadata activities, and more, ADF ensures that data flows seamlessly and efficiently through its intended pipeline. This involves activities like condition checks using 'If' conditions, iterative processing with 'ForEach' loops, and data management operations like deleting through the 'Delete' activity.
+                          </p>
+<h5>Azure Databricks</h5>
+<p>
+                              Post-staging, Azure Databricks steps in for data transformation. It accesses the staged data to conduct complex transformations, ensuring the data is structured, cleaned, and enriched for downstream consumption. Furthermore, the project's design ensures that only personnel with higher authority perform transformations on sensitive data, such as PII.
+                          </p>
+<h5>SQL Server</h5>
+<p>
+                              Finally, the lineage includes the SQL Server, which plays a dual role. It not only acts as a repository for the transformed data but also houses the critical Metadata DB. This database meticulously documents metadata, capturing the nuanced details of every process and transformation undergone in the pipeline, reinforcing the project's commitment to transparency and traceability.
+                          </p>
+<p>
+                              In summary, this data lineage is a testament to the project's dedication to efficient, transparent, and compliant data management and processing. Every stage is carefully designed to ensure data's integrity, security, and utility are preserved and enhanced.
+                          </p>
+</div>
+<div class="container" style="font-family: Arial, sans-serif; margin-bottom: 20px;">
+<h2>Data Governance in Practice</h2>
+<p>
+                              In the realm of modern data-driven projects, aligning operations with established data governance policies is imperative to ensure both compliance and optimal data management. The subsequent table provides a meticulous overview of how our project activities intertwine with and adhere to pivotal governance policies. Each row maps a specific policy to its corresponding activity, underlining our unwavering commitment to maintain data integrity, security, and privacy throughout the project lifecycle. We invite stakeholders to explore this alignment, reinforcing our transparent approach to data management.
+                          </p>
+</div>
+<table border="1" cellpadding="5" cellspacing="0">
+<thead>
+<tr>
+<th>Data Governance Policy</th>
+<th>Associated Project Activity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data Privacy Policy</td>
+<td>
+                                      - Pseudonymization of PII Data on On-Prem<br/>
+                                      - Controlled Access in Databricks Transformations for PII data
+                                  </td>
+</tr>
+<tr>
+<td>Data Security Policy</td>
+<td>
+                                      - Usage of Private Endpoints for secure connections between on-premises and Azure<br/>
+                                      - Restricting transformation access in Databricks to higher authority only
+                                  </td>
+</tr>
+<tr>
+<td>Data Retention Policy</td>
+<td>
+                                      - Deletion of data from ADLS after staging to Azure Blob Storage<br/>
+                                      - Segregation of PII and business data for appropriate retention periods
+                                  </td>
+</tr>
+<tr>
+<td>Data Quality Policy</td>
+<td>
+                                      - Selective extraction of relevant tables for staging on ADLS<br/>
+                                      - Proper classification of data into 'PII' and 'business-other-data' containers
+                                  </td>
+</tr>
+<tr>
+<td>Metadata Collection Policy</td>
+<td>
+                                      - Documentation of metadata using stored procedures in SQL Server<br/>
+                                      - Capturing specifics of data movement, storage, and transformations
+                                  </td>
+</tr>
+</tbody>
+</table>
+<div class="content">
+<h4>UK GDPR Compliance: Data Pseudonymization in Action</h4>
+<p>For businesses operating within the European Union, the General Data Protection Regulation (GDPR) sets guidelines for the collection and processing of personal data. One of the core principles under the GDPR is the protection of personal data through Pseudonymization.</p>
+                  
+     
+                  
+                      
+                       Pseudonymization of Customer Data</div></div></div></div></div></section></body></html>
+<p>The process of pseudonymization aims to replace sensitive data with artificial identifiers, ensuring both the security of the data and compliance with data protection regulations like the UK GDPR.</p>
+<h5>Process Explanation</h5>
+<p>The provided SQL code performs pseudonymization on selected columns from the <code>customers</code> table. Here's a breakdown of the process:</p>
+<h5>Relevant Columns</h5>
+<p>The columns from the <code>customers</code> table being pseudonymized include: CustomerID, CompanyName, ContactName, and ContactTitle. These columns contain potentially sensitive PII (Personally Identifiable Information) which needs to be pseudonymized for GDPR compliance.</p>
+<h5>Methodology</h5>
+<p>The SQL script uses the <code>DENSE_RANK()</code> function to generate a unique ranking number for each distinct value in the respective columns. This ranking number is then appended to a prefixed string, generating a pseudonym for each original value.</p>
+
+<h4>Creating the Pseudonymized data</h4>
+<div class="image-container">
+<div class="img-box">
+<img alt="ETL Pipeline 1" data-aos="zoom-in-down" src="assets\method.png"/>
+</div>
+
+<ul>
+  
+  <h3>Compliance with UK GDPR</h3>
+  <p>Under the UK GDPR, organizations are encouraged to implement data protection principles, including <strong>data minimization</strong> and <strong>pseudonymisation</strong>:</p>
+
+<li><strong>Data Minimization</strong>: By selecting only the relevant columns and applying pseudonymization only to PII info, we ensure that the least amount of personal data necessary is processed.</li>
+<li><strong>Pseudonymisation</strong>: The transformation of the original data to pseudonyms ensures that the data, in its pseudonymized form, cannot be directly attributed to a specific data subject without the use of additional information. This enhances data protection and allows for more secure data analytics and processing.</li>
+</ul>
+<p>In conclusion, by applying these techniques, we are adhering to the best practices prescribed by the UK GDPR, ensuring that our data handling processes are both secure and compliant.</p>
+<h4>See the final Data after pseudonymization</h4>
+<div class="image-container">
+<img alt="Data linage Overview" data-aos="zoom-in-down" src="assets\psy.png"/> </div>
+<br/><p>In above picture of pseudonymization data you can see some Contact Titles are respective and because of <code>DENSE_RANK()</code> function we can able to make same pseudonymization for that respective values. That will let us filter down the data in during visualization. </p>
+<section id="introduction">
+<h2>Introduction to the Azure cloud ETL Pipelines</h2>
+<p>
+                            At the forefront of data engineering and orchestration, this project's success hinges on its sophisticated ETL pipelines, meticulously engineered using an array of modern tools and practices. Serving as the spine of the entire data integration process, these pipelines deftly navigate through the intricacies of on-premises systems and cloud solutions, notably Azure Data Lake, all while remaining firmly anchored in GDPR compliance.
+                        </p>
+<p>
+                            Throughout the pipelines, advanced techniques and components have been employed. These include but are not limited to: parametrization in Azure Data Factory (ADF), extensive utilization of stored procedures, and orchestrated activities like metadata, lookup, set variable, and notably, the versatile Databricks activity. Inherent in its design is the capability to harness structures such as the 'ForEach' loop and conditional 'If' operations. Furthermore, post data integration operations like 'Delete Activity' and 'Execute Pipeline Activity' cement its commitment to both efficiency and compliance.
+                        </p>
+<p>
+                            This documentation offers a deep dive into each pipeline's anatomy, casting light on the nuanced processes and architectural prowess that form the bedrock of this project's advanced data integration methodology. Welcome to an exploration that unveils the confluence of best practices and technology in ETL.
+                        </p>
+</section>
+<h4>Pipeline 1, which takes data from the on-prem database using integration runtime.</h4>
+<div class="image-container">
+<div class="img-box">
+<img alt="ETL Pipeline 1" data-aos="zoom-in-down" src="assets\ww.jpeg"/>
+</div>
+<div class="container">
+<h2>Pipeline 1 Overview</h2>
+<p>In <strong>Pipeline 1</strong>, our core objective revolves around extracting data from an on-premises database and seamlessly staging it within Azure Data Lake. The process initiates with a <em>'Lookup on-prem'</em>, meticulously designed to establish connectivity with the on-premises database. Within this sphere, a specialized stored procedure is executed, which is geared towards retrieving both the schema and corresponding table details of the on-premises database.</p>
+<p>Subsequently, the pipeline employs a <em>'For Each table'</em> to process the data derived from the Lookup Activity. Within this loop, two primary activities are conducted:</p>
+<ol>
+<li><strong>Stored Procedure</strong>:<p>  This procedure <em>'on-prem metadata'</em>ingests the schema and table name harvested from the Lookup Activity output. It subsequently populates the metadata into a designated SQL Server table. Notably, the metadata encompasses the schema name, table name, pipeline ID, and the exact timestamp of the pipeline execution.</p></li>
+<li><strong>Copy Data Activity</strong>:<p>  This activity <em>'Stagging Area tables'</em>establishes a link with the on-premises database and, using the aforementioned schema and table name details, fetches the corresponding files.</p></li>
+</ol>
+<p>Conclusively, the extracted tables find their repository within a staging area container, aptly named <em>'raw-data-container'</em>.</p>
+</div>
+<div class="img-box">
+<h4>ETL Pipeline 2</h4>
+<img alt="ETL Pipeline 2" data-aos="zoom-in-down" src="assets\ee.jpeg"/></div></div>
+ 
+
+<p>In <strong>Pipeline 2</strong>, the process commences with an activity termed <em>'Stagging Metadata'</em>, tailored to fetch child items, consequently producing an output of table names.</p>
+<p>This is followed by a <em>'Foreach'</em> activity, set up to loop through each derived item based on the metadata's output value. Nestled within this loop is a conditional check:</p>
+<div class="condition-box">
+<p><code>@or(equals(item().name, 'dbo.Customers.txt'), equals(item().name, 'dbo.Employees.txt'))</code></p>
+<div class="true-branch">
+<strong>If True</strong>: 
+                                    <p>A <em>'Copy Data Activity'</em> triggers, transferring the 'Customers.txt' and 'Employees.txt' tables into a designated <em>'PII container'</em> in blob storage. This is in compliance with GDPR's principles, particularly concerning the processing of PII data, hence isolating them in a distinct container.</p>
+</div>
+<div class="false-branch">
+<strong>If False</strong>: 
+                                    <p>The corresponding <em>'Copy Data Activity'</em> initiates, redirecting files into another container labeled <em>'Business-data-container'</em>. Any file not adhering to the aforementioned condition finds its residence here.</p>
+</div>
+</div>
+<p>Upon successful copying, a subsequent <em>'Delete Activity'</em> ensues, interconnected with both true and false segments of the copy activity. This action purges tables from the data lake post-copy, epitomizing the GDPR's mandates on <strong>Data Minimization and Retention</strong>, thereby ensuring data is not retained beyond its necessary lifespan and only essential data is processed.</p>
+<p><em>Note</em>: Adherence to GDPR's data principles ensures that businesses respect the privacy rights of individuals while handling and processing their data, reinforcing trust and maintaining organizational integrity.</p>
+<div class="img-box">
+<h4>ETL Pipeline 3</h4>
+<img alt="ETL Pipeline 3" data-aos="zoom-in-down" src="assets\qq.jpeg"/>
+</div>
+</div>
+
+
+
+
+<div class="img-box">
+  <h2>Transformation Process for Pipeline 3</h2>
+  <p>In the transformation process for Pipeline 3, the following steps were executed:</p>
+  <ol>
+      <li><strong>Library Imports:</strong> Necessary libraries for data analysis and database connectivity, such as numpy, pandas, seaborn, matplotlib, and pyodbc, were imported.</li>
+      <li><strong>Blob Storage Data Extraction:</strong> Data was extracted from the blob storage, specifically from the containers named 'PII-container' and 'Business-data-container'.</li>
+      <li><strong>Database Connection:</strong> A connection was established with an SQL Server database named 'Northwind' located on a local machine.</li>
+      <li><strong>Fact Table Creation:</strong> SQL queries were constructed to create a comprehensive fact table, capturing various attributes like OrderID, ProductID, Quantity, UnitPrice, and date-related metrics.</li>
+      <li><strong>Fact and Dimension Table Formulation:</strong> Using the fetched data, various fact and dimension tables were formulated, aligning with the fact-dimension data modeling approach typical of data warehousing. This included tables like Shipper_dim, Date_dim, Product_dim, Customer_dim, and Order_fact.</li>
+      <li><strong>Data Export:</strong> These fact and dimension tables were then exported to CSV files for further use.</li>
+  </ol>
+
+  <h1>Azure ETL Project: Pipeline 3</h1>
+    
+  <h2>Data Extraction</h2>
+  <p>Data was extracted from two primary sources:</p>
+  <ul>
+      <li><code>PII-container</code>: Containing personal and sensitive data.</li>
+      <li><code>business-data-container</code>: Containing generic business-related data.</li>
+  </ul>
+
+  <h2>Transformation</h2>
+  <p>Upon extraction, the data underwent transformation processes to generate fact and dimension tables from the following base tables:</p>
+  <code>
+      product, customer, orders_details, orders, shipper, categories
+  </code>
+  <p>Resulting in:</p>
+  <ul>
+      <li><code>Shipper_dim.to</code></li>
+      <li><code>Date_dim</code></li>
+      <li><code>Product_dim</code></li>
+      <li><code>Customer_dim</code></li>
+      <li><code>Order_fact</code></li>
+  </ul>
+
+  <h2>Databricks Notebook & Array Documentation</h2>
+  <p>All transformations and changes were documented in an array. This array was subsequently passed as a value from the Databricks notebook to the next Azure Data Factory activity. This activity, set to trigger upon completion of the notebook, further interacts with the stored procedures in a SQL database.</p>
+  <h2>Storing Transformation Metadata</h2>
+  <p>The stored procedure collects the array data and saves it to a table named:</p>
+  <code>
+      "Transformation Metadata"
+  </code>
+  <p>located within the <code>Metadata DB</code>.</p>
+
+  <h2>Data Deletion and Compliance</h2>
+  <p>Post data storage, a deletion activity ensues. This ensures that data within the blob storage is removed, aligning with the data retention policies of the UK GDPR. The UK GDPR emphasizes data minimization and storage limitation, ensuring that personal data is stored only for the necessary period and no longer. This ensures both compliance and security, preventing unnecessary exposure of sensitive data.</p>
+
+
+
+</div>
+
+<!-- Add Arrows -->
+</div>
+
+
+
+<section class="testimonial">
+<div class="container">
+<div class="row">
+<div class="container" id="work"></div>
+<div class="col-md-12">
+<h4 class="sub-heading">Data Workflow and formula IMPLEMENTATION</h4>
+<h1 class="heading pink"><span class="pink">Key Performance Indicators</span> <br/>Data Transformation</h1>
+</div>
+</div>
+</div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-12">
+<!-- Swiper -->
+<!-- Add Pagination -->
+<div class="swiper-pagination"></div>
+</div>
+</div>
+</div>
+</section>
+<br/><br/><br/>
+<!-- Statistics -->
+<p class="designation"><a href="#">Know More →</a></p>
+
+
+<!-- Dax -->
+<!-- End of Detailed Project Explanation -->
+<!-- Add Arrows -->
+
+
+
+
+
+<!-- Footer -->
+<footer>
+<div class="container-fluid">
+<div class="row footer">
+<div class="container" id="about"></div>
+<div class="col-md-12 text-center" id="about">
+<h1> Siddharth<br/><span>Chikalkar</span></h1>
+<p> I am currently pursuing an MSc in Data Analytics at Aston University in Birmingham. I hold a Bachelor's degree in Computer Application (BCA) from India, where I achieved a GPA of 8.68. With a strong foundation in data analytics and computer science, I have developed a diverse skill set. I am experienced in utilizing tools such as Power BI, SQL, and Excel for data management, visualization, and analysis. Through various projects, I have gained expertise in data cleaning, transformation, and developing insightful dashboards. Additionally, I have worked on machine learning projects, applying algorithms for loan approval prediction and facial expression detection. My passion for leveraging data to drive informed decision-making is matched by my proficiency in Python, Django, and TensorFlow. With a keen eye for detail and a drive for continuous learning, I am dedicated to delivering accurate and impactful data-driven solutions.</p>
+<ul class="social-links">
+<li><a href="https://www.linkedin.com/in/siddharth-chikalkar-7244141b0"><img src="assets/behance.png"/></a></li>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- Some Javascript -->
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/swiper.jquery.min.js"></script>
+<!-- Initialize Client Swiper -->
+<script>
+      var swiper1 = new Swiper('.client-swiper', {
+        slidesPerView: 3,
+        paginationClickable: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        spaceBetween: 60,
+        // Responsive breakpoints
+        breakpoints: {
+          // when window width is <= 320px
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            pagination: '.swiper-pagination'
+          },
+          // when window width is <= 480px
+          480: {
+            slidesPerView: 1,
+            spaceBetween: 20
+          },
+          // when window width is <= 640px
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 30
+          }
+        }
+      });
+      // Initialize Testimonial Swiper
+      var swiper2 = new Swiper('.testimonial-swiper', {
+        slidesPerView: 3,
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        spaceBetween: 30,
+        grabCursor: true,
+        freeMode: true,
+        breakpoints: {
+          // when window width is <= 320px
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          // when window width is <= 480px
+          480: {
+            slidesPerView: 1,
+            spaceBetween: 10
+          },
+          // when window width is <= 640px
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 10
+          }
+        }
+      });
+      </script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+<script src="js/jquery.counterup.min.js"></script>
+<script>
+      // Counterup
+      $('.counter').counterUp({
+        time: 1000
+      });
+
+      // Main Navigation
+      $('#menu-toggle').click(function(){
+        $(this).toggleClass('open'),
+        $('.main-nav').toggleClass('show-it');
+      })
+      </script>
+<!-- Google Analytics - You should remove this -->
+<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-29231762-2', 'auto');
+      ga('send', 'pageview');
+
+
+
+     
+        AOS.init();
+     
+      </script>
+
+
